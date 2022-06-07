@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
+import BodyTablePlanets from './BodyTablePlanets';
 
 const TablePlanets = () => {
   const { data } = useContext(StarWarsContext);
@@ -12,8 +13,6 @@ const TablePlanets = () => {
     }
   }, [data]);
 
-  console.log(data);
-
   return (
     <table>
       <thead>
@@ -21,6 +20,7 @@ const TablePlanets = () => {
           {keysName.map((key) => <th key={ key }>{key}</th>)}
         </tr>
       </thead>
+      <BodyTablePlanets />
     </table>
   );
 };
