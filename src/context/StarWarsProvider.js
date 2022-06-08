@@ -34,8 +34,8 @@ const StarWarsProvider = ({ children }) => {
           return planet[column] > Number(inputNumber);
         case 'menor que':
           return planet[column] < Number(inputNumber);
-        case 'igual a ':
-          return planet[column] === Number(inputNumber);
+        case 'igual a':
+          return planet[column] === inputNumber;
         default:
           return true;
         }
