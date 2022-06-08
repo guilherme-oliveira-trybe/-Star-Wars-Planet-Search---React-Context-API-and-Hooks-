@@ -4,6 +4,7 @@ import StarWarsContext from './StarWarsContext';
 
 const StarWarsProvider = ({ children }) => {
   const [data, setData] = useState([]);
+  const [filterByName, setFilterByName] = useState('');
   const urlApi = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
   useEffect(() => {
@@ -18,8 +19,14 @@ const StarWarsProvider = ({ children }) => {
     getPlanets();
   }, []);
 
+  const changeFilterName = (value) => {
+    setFilterByName(value);
+  };
+
   const contexValue = {
     data,
+    filterByName,
+    changeFilterName,
   };
 
   return (
