@@ -9,10 +9,6 @@ const InputFilterByName = () => {
     changeFilterName(planetName);
   }, [planetName, changeFilterName]);
 
-  const onChange = ({ target: { value } }) => {
-    setPlanetName(value.toLowerCase());
-  };
-
   return (
     <div>
       <label htmlFor="filterByName">
@@ -23,7 +19,7 @@ const InputFilterByName = () => {
           name="planetName"
           id="filterByName"
           value={ planetName }
-          onChange={ onChange }
+          onChange={ ({ target: { value } }) => setPlanetName(value.toLowerCase()) }
         />
       </label>
     </div>

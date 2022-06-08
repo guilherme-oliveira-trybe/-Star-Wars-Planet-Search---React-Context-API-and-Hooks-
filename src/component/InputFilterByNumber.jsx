@@ -7,18 +7,6 @@ const InputFilterByNumber = () => {
   const [operator, setOperator] = useState('maior que');
   const [inputNumber, setInputNumber] = useState(0);
 
-  const onChangeColumn = ({ target: { value } }) => {
-    setColumn(value);
-  };
-
-  const onChangeOperator = ({ target: { value } }) => {
-    setOperator(value);
-  };
-
-  const onChangeInputNumber = ({ target: { value } }) => {
-    setInputNumber(value);
-  };
-
   const onClick = () => {
     changeFilterNumericValues({
       column,
@@ -35,7 +23,7 @@ const InputFilterByNumber = () => {
           data-testid="column-filter"
           id="filter-column"
           value={ column }
-          onChange={ onChangeColumn }
+          onChange={ ({ target: { value } }) => setColumn(value) }
         >
           <option>population</option>
           <option>orbital_period</option>
@@ -50,7 +38,7 @@ const InputFilterByNumber = () => {
           data-testid="comparison-filter"
           id="filter-operator"
           value={ operator }
-          onChange={ onChangeOperator }
+          onChange={ ({ target: { value } }) => setOperator(value) }
         >
           <option>maior que</option>
           <option>menor que</option>
@@ -61,7 +49,7 @@ const InputFilterByNumber = () => {
         data-testid="value-filter"
         type="number"
         value={ inputNumber }
-        onChange={ onChangeInputNumber }
+        onChange={ ({ target: { value } }) => setInputNumber(value) }
       />
       <button
         data-testid="button-filter"

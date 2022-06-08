@@ -34,11 +34,15 @@ const StarWarsProvider = ({ children }) => {
   };
 
   const changeFilterNumericValues = ({ column, operator, inputNumber }) => {
-    setFilterByNumericValues([
-      ...filterByNumericValues,
+    const numericValues = {
       column,
       operator,
       inputNumber,
+    };
+
+    setFilterByNumericValues([
+      ...filterByNumericValues,
+      numericValues,
     ]);
   };
 
