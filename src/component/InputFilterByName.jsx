@@ -1,15 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 const InputFilterByName = () => {
   const { changeFilterName } = useContext(StarWarsContext);
   const [planetName, setPlanetName] = useState('');
 
+  useEffect(() => {
+    changeFilterName(planetName);
+  }, [planetName, changeFilterName]);
+
   const onChange = ({ target: { value } }) => {
     setPlanetName(value);
-    if (planetName.length > 0) {
-      changeFilterName(planetName);
-    }
   };
 
   return (
