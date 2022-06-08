@@ -6,6 +6,8 @@ const StarWarsProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [filterByName, setFilterByName] = useState('');
   const [filterPlanets, setFilterPlanets] = useState([]);
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
+
   const urlApi = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
   useEffect(() => {
@@ -29,10 +31,21 @@ const StarWarsProvider = ({ children }) => {
     setFilterByName(value);
   };
 
+  const changeFilterNumericValues = ({ column, operator, inputNumber }) => {
+    setFilterByNumericValues([
+      ...filterByNumericValues,
+      column,
+      operator,
+      inputNumber,
+    ]);
+  };
+
   const contexValue = {
     data,
     filterPlanets,
+    filterByNumericValues,
     changeFilterName,
+    changeFilterNumericValues,
   };
 
   return (
