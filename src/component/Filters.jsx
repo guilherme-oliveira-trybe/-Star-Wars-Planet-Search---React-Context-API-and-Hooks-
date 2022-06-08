@@ -5,8 +5,8 @@ const Filters = () => {
   const { filterByNumericValues } = useContext(StarWarsContext);
 
   return (
-    filterByNumericValues.map(({ column, operator, inputNumber }) => (
-      <span key={ column }>
+    filterByNumericValues.map(({ column, operator, inputNumber }, index) => (
+      <span key={ `${column}-${index}` }>
         {`${column} ${operator} ${inputNumber}`}
       </span>
     ))

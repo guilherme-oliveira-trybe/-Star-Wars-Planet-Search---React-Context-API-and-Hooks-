@@ -26,8 +26,23 @@ const StarWarsProvider = ({ children }) => {
   useEffect(() => {
     const filterName = data.filter(({ name }) => name.toLowerCase()
       .includes(filterByName));
-    setFilterPlanets(filterName);
-  }, [data, filterByName]);
+
+    const resultAllFilters = filterByNumericValues
+      .reduce((acc, { column, operator, inputNumber }) => acc.filter((planet) => {
+        switch (operator) {
+        case 'maior que':
+          return planet[column] > Number(inputNumber);
+        case 'menor que':
+          return planet[column] < Number(inputNumber);
+        case 'igual a ':
+          return planet[column] === Number(inputNumber);
+        default:
+          return true;
+        }
+      }), filterName);
+
+    setFilterPlanets(resultAllFilters);
+  }, [data, filterByName, filterByNumericValues]);
 
   const changeFilterName = (value) => {
     setFilterByName(value);
