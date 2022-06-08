@@ -61,12 +61,20 @@ const StarWarsProvider = ({ children }) => {
     ]);
   };
 
+  const deleteFilter = (index) => {
+    const filters = filterByNumericValues
+      .filter((_filter, filterIndex) => filterIndex !== index);
+
+    setFilterByNumericValues(filters);
+  };
+
   const contexValue = {
     data,
     filterPlanets,
     filterByNumericValues,
     changeFilterName,
     changeFilterNumericValues,
+    deleteFilter,
   };
 
   return (

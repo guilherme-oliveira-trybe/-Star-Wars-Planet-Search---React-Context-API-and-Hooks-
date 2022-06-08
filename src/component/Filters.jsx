@@ -2,13 +2,22 @@ import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 const Filters = () => {
-  const { filterByNumericValues } = useContext(StarWarsContext);
+  const { filterByNumericValues, deleteFilter } = useContext(StarWarsContext);
 
   return (
     filterByNumericValues.map(({ column, operator, inputNumber }, index) => (
-      <span key={ `${column}-${index}` }>
-        {`${column} ${operator} ${inputNumber}`}
-      </span>
+      <div key={ `${column}-${index}` }>
+        <span>
+          {`${column} ${operator} ${inputNumber}`}
+        </span>
+        <button
+          type="button"
+          onClick={ () => deleteFilter(index) }
+        >
+          X
+
+        </button>
+      </div>
     ))
   );
 };
