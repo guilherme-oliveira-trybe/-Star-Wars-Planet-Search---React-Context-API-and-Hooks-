@@ -14,18 +14,19 @@ const InputFilterByName = () => {
   };
 
   return (
-    <label htmlFor="filterByName">
-      Filtro por Nome:
-      <input
-        data-testid="name-filter"
-        type="text"
-        name="planetName"
-        id="filterByName"
-        value={ planetName }
-        onChange={ onChange }
-      />
-    </label>
-
+    <div>
+      <label htmlFor="filterByName">
+        Filtro por Nome:
+        <input
+          data-testid="name-filter"
+          type="text"
+          name="planetName"
+          id="filterByName"
+          value={ planetName }
+          onChange={ onChange }
+        />
+      </label>
+    </div>
   );
 };
 
