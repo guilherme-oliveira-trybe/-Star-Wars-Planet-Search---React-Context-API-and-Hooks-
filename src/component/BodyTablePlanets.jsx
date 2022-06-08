@@ -1,18 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 const BodyTablePlanets = () => {
   const { filterPlanets } = useContext(StarWarsContext);
-  const [planets, setPlanets] = useState([]);
-
-  useEffect(() => {
-    setPlanets(filterPlanets);
-  }, [filterPlanets]);
 
   return (
     <tbody>
       {
-        planets.map(({
+        filterPlanets.map(({
           name,
           rotation_period: rotationPeriod,
           orbital_period: orbitalPeriod,

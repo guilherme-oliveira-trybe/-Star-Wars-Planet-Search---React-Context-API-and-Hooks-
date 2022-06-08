@@ -10,7 +10,7 @@ const InputFilterByName = () => {
   }, [planetName, changeFilterName]);
 
   const onChange = ({ target: { value } }) => {
-    setPlanetName(value);
+    setPlanetName(value.toLowerCase());
   };
 
   return (
