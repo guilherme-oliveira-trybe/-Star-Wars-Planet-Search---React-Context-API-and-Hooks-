@@ -75,11 +75,20 @@ const StarWarsProvider = ({ children }) => {
     });
   };
 
-  const deleteFilter = (index) => {
+  const updateFilterByNumericValues = (column) => {
+    setFilterType({
+      ...filterType,
+      [column]: false,
+    });
+  };
+
+  const deleteFilter = (index, column) => {
     const filters = filterByNumericValues
       .filter((_filter, filterIndex) => filterIndex !== index);
 
     setFilterByNumericValues(filters);
+
+    updateFilterByNumericValues(column);
   };
 
   const contexValue = {

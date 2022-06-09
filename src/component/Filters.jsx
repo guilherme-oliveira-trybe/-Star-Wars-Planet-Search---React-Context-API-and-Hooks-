@@ -12,7 +12,7 @@ const Filters = () => {
         </span>
         <button
           type="button"
-          onClick={ () => deleteFilter(index) }
+          onClick={ () => deleteFilter(index, column) }
         >
           X
 
