@@ -2,16 +2,29 @@ import React, { useContext, useState } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 const InputFilterByNumber = () => {
+  const INITIAL_STATE = {
+    population: false,
+    orbital_period: false,
+    diameter: false,
+    rotation_period: false,
+    surface_water: false,
+  };
+
   const { changeFilterNumericValues } = useContext(StarWarsContext);
   const [column, setColumn] = useState('population');
   const [operator, setOperator] = useState('maior que');
   const [inputNumber, setInputNumber] = useState(0);
+  const [filterType, setFilterType] = useState(INITIAL_STATE);
 
   const onClick = () => {
     changeFilterNumericValues({
       column,
       operator,
       inputNumber,
+    });
+    setFilterType({
+      ...filterType,
+      [column]: true,
     });
   };
 
@@ -25,11 +38,11 @@ const InputFilterByNumber = () => {
           value={ column }
           onChange={ ({ target: { value } }) => setColumn(value) }
         >
-          <option>population</option>
-          <option>orbital_period</option>
-          <option>diameter</option>
-          <option>rotation_period</option>
-          <option>surface_water</option>
+          { !filterType.population && <option>population</option>}
+          { !filterType.orbital_period && <option>orbital_period</option>}
+          { !filterType.diameter && <option>diameter</option>}
+          { !filterType.rotation_period && <option>rotation_period</option>}
+          { !filterType.surface_water && <option>surface_water</option>}
         </select>
       </label>
       <label htmlFor="filter-operator">
