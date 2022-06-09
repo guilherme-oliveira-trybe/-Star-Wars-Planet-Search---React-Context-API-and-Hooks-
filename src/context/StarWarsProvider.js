@@ -3,10 +3,19 @@ import PropTypes from 'prop-types';
 import StarWarsContext from './StarWarsContext';
 
 const StarWarsProvider = ({ children }) => {
+  const INITIAL_STATE = {
+    population: false,
+    orbital_period: false,
+    diameter: false,
+    rotation_period: false,
+    surface_water: false,
+  };
+
   const [data, setData] = useState([]);
   const [filterPlanets, setFilterPlanets] = useState([]);
   const [filterByName, setFilterByName] = useState('');
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
+  const [filterType, setFilterType] = useState(INITIAL_STATE);
 
   const urlApi = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
@@ -59,6 +68,11 @@ const StarWarsProvider = ({ children }) => {
       ...filterByNumericValues,
       numericValues,
     ]);
+
+    setFilterType({
+      ...filterType,
+      [column]: true,
+    });
   };
 
   const deleteFilter = (index) => {
@@ -72,6 +86,7 @@ const StarWarsProvider = ({ children }) => {
     data,
     filterPlanets,
     filterByNumericValues,
+    filterType,
     changeFilterName,
     changeFilterNumericValues,
     deleteFilter,
