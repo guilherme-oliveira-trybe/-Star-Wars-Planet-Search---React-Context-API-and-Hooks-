@@ -2,19 +2,10 @@ import React, { useContext, useState } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
 
 const InputFilterByNumber = () => {
-  // const INITIAL_STATE = {
-  //   population: false,
-  //   orbital_period: false,
-  //   diameter: false,
-  //   rotation_period: false,
-  //   surface_water: false,
-  // };
-
   const { changeFilterNumericValues, filterType } = useContext(StarWarsContext);
   const [column, setColumn] = useState('population');
   const [operator, setOperator] = useState('maior que');
   const [inputNumber, setInputNumber] = useState(0);
-  // const [filterType, setFilterType] = useState(INITIAL_STATE);
 
   const onClick = () => {
     changeFilterNumericValues({
@@ -22,10 +13,6 @@ const InputFilterByNumber = () => {
       operator,
       inputNumber,
     });
-    // setFilterType({
-    //   ...filterType,
-    //   [column]: true,
-    // });
   };
 
   return (
