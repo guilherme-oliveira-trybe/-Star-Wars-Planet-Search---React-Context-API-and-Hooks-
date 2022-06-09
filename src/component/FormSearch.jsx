@@ -1,6 +1,7 @@
 import React from 'react';
 import InputFilterByName from './InputFilterByName';
 import InputFilterByNumber from './InputFilterByNumber';
+import ButtonDeleteAllFilters from './ButtonDeleteAllFilters';
 
 const FormSearch = () => (
   <form>
@@ -9,6 +10,7 @@ const FormSearch = () => (
     <InputFilterByName />
     <hr />
     <InputFilterByNumber />
+    <ButtonDeleteAllFilters />
   </form>
 );
 

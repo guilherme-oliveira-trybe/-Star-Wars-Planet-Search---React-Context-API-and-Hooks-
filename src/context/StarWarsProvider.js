@@ -91,6 +91,10 @@ const StarWarsProvider = ({ children }) => {
     updateFilterByNumericValues(column);
   };
 
+  const deleteAllFilters = () => {
+    setFilterByNumericValues([]);
+  };
+
   const contexValue = {
     data,
     filterPlanets,
@@ -99,6 +103,7 @@ const StarWarsProvider = ({ children }) => {
     changeFilterName,
     changeFilterNumericValues,
     deleteFilter,
+    deleteAllFilters,
   };
 
   return (

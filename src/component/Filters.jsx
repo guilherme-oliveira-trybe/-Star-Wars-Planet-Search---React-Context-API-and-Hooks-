@@ -6,7 +6,7 @@ const Filters = () => {
 
   return (
     filterByNumericValues.map(({ column, operator, inputNumber }, index) => (
-      <div key={ `${column}-${index}` }>
+      <div key={ `${column}-${index}` } data-testid="filter">
         <span>
           {`${column} ${operator} ${inputNumber}`}
         </span>
