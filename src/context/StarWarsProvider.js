@@ -15,6 +15,7 @@ const StarWarsProvider = ({ children }) => {
   const [filterPlanets, setFilterPlanets] = useState([]);
   const [filterByName, setFilterByName] = useState('');
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
+  const [filterByOrder, setFilterByOrder] = useState([]);
   const [filterType, setFilterType] = useState(INITIAL_STATE);
 
   const urlApi = 'https://swapi-trybe.herokuapp.com/api/planets/';
@@ -49,9 +50,20 @@ const StarWarsProvider = ({ children }) => {
           return true;
         }
       }), filterName);
+    // const teste = filterByOrder.reduce((acc, { column, order }) => {
+    //   switch (order) {
+    //   case 'ASC':
+    //     return acc.sort((a, b) => a[column] - b[column]);
+    //   case 'DSC':
+    //     return acc.sort((a, b) => b[column] - a[column]);
+    //   default:
+    //     return true;
+    //   }
+    // }, resultAllFilters);
+    // console.log(teste);
 
     setFilterPlanets(resultAllFilters);
-  }, [data, filterByName, filterByNumericValues]);
+  }, [data, filterByName, filterByNumericValues, filterByOrder]);
 
   const changeFilterName = (value) => {
     setFilterByName(value);
@@ -73,6 +85,18 @@ const StarWarsProvider = ({ children }) => {
       ...filterType,
       [column]: true,
     });
+  };
+
+  const changeFilterOrder = ({ column, order }) => {
+    const orderValues = {
+      column,
+      order,
+    };
+
+    setFilterByOrder([
+      ...filterByOrder,
+      orderValues,
+    ]);
   };
 
   const updateFilterByNumericValues = (column) => {
@@ -102,6 +126,7 @@ const StarWarsProvider = ({ children }) => {
     filterType,
     changeFilterName,
     changeFilterNumericValues,
+    changeFilterOrder,
     deleteFilter,
     deleteAllFilters,
   };
