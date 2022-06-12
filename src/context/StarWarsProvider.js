@@ -15,7 +15,7 @@ const StarWarsProvider = ({ children }) => {
   const [filterPlanets, setFilterPlanets] = useState([]);
   const [filterByName, setFilterByName] = useState('');
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
-  const [filterByOrder, setFilterByOrder] = useState([]);
+  const [filterByOrder, setFilterByOrder] = useState({});
   const [filterType, setFilterType] = useState(INITIAL_STATE);
 
   const urlApi = 'https://swapi-trybe.herokuapp.com/api/planets/';
@@ -49,19 +49,30 @@ const StarWarsProvider = ({ children }) => {
         default:
           return true;
         }
-      }), filterName);
-    // const teste = filterByOrder.reduce((acc, { column, order }) => {
-    //   switch (order) {
+      }), filterName).sort((a, b) => {
+        const x = a.name.toLowerCase();
+        const y = b.name.toLowerCase();
+        return x === y ? 0 : x > y ? 1 : -1;
+      });
+    // const teste = () => {
+    //   switch (filterByOrder.order) {
     //   case 'ASC':
-    //     return acc.sort((a, b) => a[column] - b[column]);
+    //     return resultAllFilters.sort((a, b) => {
+    //       const x = a[filterByOrder.column].toUpperCase();
+    //       const y = b[filterByOrder.column].toUpperCase();
+    //       return x === y ? 0 : x > y ? 1: -1;
+    //     });
     //   case 'DSC':
-    //     return acc.sort((a, b) => b[column] - a[column]);
+    //     return resultAllFilters.sort((a, b) => {
+    //       const x = a[filterByOrder.column].toUpperCase();
+    //       const y = b[filterByOrder.column].toUpperCase();
+    //       return x === y ? 0 : x < y ? 1: -1;
+    //     });
     //   default:
-    //     return true;
+    //     return resultAllFilters;
     //   }
-    // }, resultAllFilters);
-    // console.log(teste);
-
+    // };
+    // teste();
     setFilterPlanets(resultAllFilters);
   }, [data, filterByName, filterByNumericValues, filterByOrder]);
 
@@ -93,10 +104,7 @@ const StarWarsProvider = ({ children }) => {
       order,
     };
 
-    setFilterByOrder([
-      ...filterByOrder,
-      orderValues,
-    ]);
+    setFilterByOrder(orderValues);
   };
 
   const updateFilterByNumericValues = (column) => {
