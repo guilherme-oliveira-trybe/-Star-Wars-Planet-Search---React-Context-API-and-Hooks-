@@ -16,9 +16,65 @@ const StarWarsProvider = ({ children }) => {
   const [filterByName, setFilterByName] = useState('');
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
   const [filterByOrder, setFilterByOrder] = useState({});
+  const [filterOrderValues, setFilterOrderValues] = useState([]);
   const [filterType, setFilterType] = useState(INITIAL_STATE);
 
   const urlApi = 'https://swapi-trybe.herokuapp.com/api/planets/';
+
+  const organizePlanetsByName = (planetsArray) => {
+    planetsArray.sort((a, b) => {
+      const x = a.name.toLowerCase();
+      const y = b.name.toLowerCase();
+      const SMALLER = -1;
+      const BIGGER = 1;
+      const IQUAL = 0;
+      if (x > y) {
+        return BIGGER;
+      } if (x < y) {
+        return SMALLER;
+      }
+      return IQUAL;
+    });
+  };
+
+  const filterByBiggerOrder = (column) => filterOrderValues.sort((a, b) => {
+    const SMALLER = -1;
+    const BIGGER = 1;
+    const IQUAL = 0;
+    const x = a[column] === 'unknown' ? SMALLER : Number(a[column]);
+    const y = b[column] === 'unknown' ? SMALLER : Number(b[column]);
+    if (x > y) {
+      return BIGGER;
+    } if (x < y) {
+      return SMALLER;
+    }
+    return IQUAL;
+  });
+
+  const filterBySmallerOrder = (column) => filterOrderValues.sort((a, b) => {
+    const SMALLER = -1;
+    const BIGGER = 1;
+    const IQUAL = 0;
+    const x = a[column] === 'unknown' ? SMALLER : Number(a[column]);
+    const y = b[column] === 'unknown' ? SMALLER : Number(b[column]);
+    if (x < y) {
+      return BIGGER;
+    } if (x > y) {
+      return SMALLER;
+    }
+    return IQUAL;
+  });
+
+  const resultOrderFilter = () => {
+    switch (filterByOrder.order) {
+    case 'ASC':
+      return filterByBiggerOrder(filterByOrder.column);
+    case 'DSC':
+      return filterBySmallerOrder(filterByOrder.column);
+    default:
+      return filterOrderValues;
+    }
+  };
 
   useEffect(() => {
     const getPlanets = async () => {
@@ -49,32 +105,19 @@ const StarWarsProvider = ({ children }) => {
         default:
           return true;
         }
-      }), filterName).sort((a, b) => {
-        const x = a.name.toLowerCase();
-        const y = b.name.toLowerCase();
-        return x === y ? 0 : x > y ? 1 : -1;
-      });
-    // const teste = () => {
-    //   switch (filterByOrder.order) {
-    //   case 'ASC':
-    //     return resultAllFilters.sort((a, b) => {
-    //       const x = a[filterByOrder.column].toUpperCase();
-    //       const y = b[filterByOrder.column].toUpperCase();
-    //       return x === y ? 0 : x > y ? 1: -1;
-    //     });
-    //   case 'DSC':
-    //     return resultAllFilters.sort((a, b) => {
-    //       const x = a[filterByOrder.column].toUpperCase();
-    //       const y = b[filterByOrder.column].toUpperCase();
-    //       return x === y ? 0 : x < y ? 1: -1;
-    //     });
-    //   default:
-    //     return resultAllFilters;
-    //   }
-    // };
-    // teste();
+      }), filterName);
+    organizePlanetsByName(resultAllFilters);
     setFilterPlanets(resultAllFilters);
+    setFilterOrderValues(resultAllFilters);
   }, [data, filterByName, filterByNumericValues, filterByOrder]);
+
+  useEffect(() => {
+    const orderFilter = () => {
+      const result = resultOrderFilter();
+      setFilterPlanets(result);
+    };
+    orderFilter();
+  }, [filterOrderValues, filterByOrder]);
 
   const changeFilterName = (value) => {
     setFilterByName(value);
