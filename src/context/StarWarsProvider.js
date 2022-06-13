@@ -37,45 +37,6 @@ const StarWarsProvider = ({ children }) => {
     });
   };
 
-  const filterByBiggerOrder = (column) => filterOrderValues.sort((a, b) => {
-    const SMALLER = -1;
-    const BIGGER = 1;
-    const IQUAL = 0;
-    const x = a[column] === 'unknown' ? SMALLER : Number(a[column]);
-    const y = b[column] === 'unknown' ? SMALLER : Number(b[column]);
-    if (x > y) {
-      return BIGGER;
-    } if (x < y) {
-      return SMALLER;
-    }
-    return IQUAL;
-  });
-
-  const filterBySmallerOrder = (column) => filterOrderValues.sort((a, b) => {
-    const SMALLER = -1;
-    const BIGGER = 1;
-    const IQUAL = 0;
-    const x = a[column] === 'unknown' ? SMALLER : Number(a[column]);
-    const y = b[column] === 'unknown' ? SMALLER : Number(b[column]);
-    if (x < y) {
-      return BIGGER;
-    } if (x > y) {
-      return SMALLER;
-    }
-    return IQUAL;
-  });
-
-  const resultOrderFilter = () => {
-    switch (filterByOrder.order) {
-    case 'ASC':
-      return filterByBiggerOrder(filterByOrder.column);
-    case 'DSC':
-      return filterBySmallerOrder(filterByOrder.column);
-    default:
-      return filterOrderValues;
-    }
-  };
-
   useEffect(() => {
     const getPlanets = async () => {
       const { results } = await fetch(urlApi).then((response) => response.json());
@@ -112,11 +73,29 @@ const StarWarsProvider = ({ children }) => {
   }, [data, filterByName, filterByNumericValues, filterByOrder]);
 
   useEffect(() => {
-    const orderFilter = () => {
-      const result = resultOrderFilter();
-      setFilterPlanets(result);
+    const planets = filterOrderValues.filter((planet) => (
+      planet[filterByOrder.column] !== 'unknown'));
+
+    const unknown = filterOrderValues.filter((planet) => (
+      planet[filterByOrder.column] === 'unknown'));
+
+    const teste = () => {
+      const resultFilter = () => {
+        if (filterByOrder.order === 'ASC') {
+          const filterAsc = planets.sort((a, b) => (
+            Number(a[filterByOrder.column]) - Number(b[filterByOrder.column])));
+          return [...filterAsc, ...unknown];
+        }
+        if (filterByOrder.order === 'DSC') {
+          const filterDsc = planets.sort((a, b) => (
+            Number(b[filterByOrder.column]) - Number(a[filterByOrder.column])));
+          return [...filterDsc, ...unknown];
+        }
+        return filterOrderValues;
+      };
+      setFilterPlanets(resultFilter);
     };
-    orderFilter();
+    teste();
   }, [filterOrderValues, filterByOrder]);
 
   const changeFilterName = (value) => {
