@@ -1,0 +1,20 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  width: 95%;
+}
+
+.container header {
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+
+.container main {
+  align-items: center;
+  display: flex;
+  height: 250px;
+  justify-content: space-between;
+  width: 100%;
+}

@@ -1,0 +1,9 @@
+.container {
+  display: table-header-group;
+}
+
+.container tr {
+  display: table-row;
+  font-size: 18px;
+  width: 100%;
+}

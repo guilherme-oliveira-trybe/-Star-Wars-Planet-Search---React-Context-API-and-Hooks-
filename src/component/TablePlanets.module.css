@@ -1,0 +1,9 @@
+.container {
+  box-sizing: border-box;
+  display: table-row-group;
+  height: 350px;
+  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 95%;
+}

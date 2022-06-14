@@ -1,0 +1,20 @@
+.container {
+  align-items: center;
+  display: flex;
+  height: 60px;
+  justify-content: center;
+}
+
+.container input::placeholder {
+  color: yellow;
+}
+
+.container input {
+  background-color: transparent;
+  border: solid 1px yellow;
+  border-radius: 5px;
+  color: yellow;
+  font-size: 15px;
+  height: 80%;
+  text-align: center;
+}

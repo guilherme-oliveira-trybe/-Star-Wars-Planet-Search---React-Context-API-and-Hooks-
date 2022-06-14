@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
+import styles from './ButtonDeleteAllFilters.module.css';
 
 const ButtonDeleteAllFilters = () => {
   const { deleteAllFilters } = useContext(StarWarsContext);
 
   return (
-    <div>
+    <div className={ styles.container }>
       <button
         data-testid="button-remove-filters"
         type="button"

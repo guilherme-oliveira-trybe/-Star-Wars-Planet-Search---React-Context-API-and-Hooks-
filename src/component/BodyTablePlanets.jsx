@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
+import styles from './BodyTablePlanets.module.css';
 
 const BodyTablePlanets = () => {
   const { filterPlanets } = useContext(StarWarsContext);
 
   return (
-    <tbody>
+    <tbody className={ styles.container }>
       {
         filterPlanets.map(({
           name,

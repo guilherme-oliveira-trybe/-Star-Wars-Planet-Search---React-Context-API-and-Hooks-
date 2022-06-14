@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './HeaderTablePlanets.module.css';
 
 const HeaderTablePlanets = () => (
-  <thead>
+  <thead className={ styles.container }>
     <tr>
       <th>Name</th>
       <th>Rotation Period</th>

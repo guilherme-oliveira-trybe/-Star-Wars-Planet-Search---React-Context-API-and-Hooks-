@@ -147,6 +147,7 @@ const StarWarsProvider = ({ children }) => {
 
   const deleteAllFilters = () => {
     setFilterByNumericValues([]);
+    setFilterByOrder({});
   };
 
   const contexValue = {

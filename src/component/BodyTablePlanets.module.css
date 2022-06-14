@@ -1,0 +1,15 @@
+.container {
+  display: table-row-group;
+}
+
+.container tr {
+  display: table-row;
+}
+
+.container td {
+  display: table-cell;
+}
+
+.container th {
+  display: table-cell;
+}

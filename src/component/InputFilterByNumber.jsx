@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import StarWarsContext from '../context/StarWarsContext';
+import styles from './InputFilterByNumber.module.css';
 
 const InputFilterByNumber = () => {
   const { changeFilterNumericValues, filterType } = useContext(StarWarsContext);
@@ -16,8 +17,8 @@ const InputFilterByNumber = () => {
   };
 
   return (
-    <div>
-      <label htmlFor="filter-column">
+    <div className={ styles.container }>
+      <label htmlFor="filter-column" className={ styles.column }>
         Coluna
         <select
           data-testid="column-filter"
@@ -32,7 +33,7 @@ const InputFilterByNumber = () => {
           { !filterType.surface_water && <option>surface_water</option>}
         </select>
       </label>
-      <label htmlFor="filter-operator">
+      <label htmlFor="filter-operator" className={ styles.operator }>
         Operador
         <select
           data-testid="comparison-filter"
