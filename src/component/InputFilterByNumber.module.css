@@ -49,6 +49,10 @@
   font-size: 18px;
 }
 
+.column option {
+  background-color: black;
+}
+
 .operator {
   align-items: flex-start;
   display: flex;
@@ -62,4 +66,8 @@
   border: none;
   color: yellow;
   font-size: 18px;
+}
+
+.operator option {
+  background-color: black;
 }

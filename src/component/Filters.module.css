@@ -1,0 +1,16 @@
+.container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 30px;
+  width: 95%;
+}
+
+.container button {
+  background-color: transparent;
+  border: none;
+  color: red;
+  font-size: 20px;
+  margin-left: 10px;
+}

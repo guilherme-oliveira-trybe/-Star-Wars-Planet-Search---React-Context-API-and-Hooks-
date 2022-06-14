@@ -36,6 +36,11 @@
   font-size: 18px;
 }
 
+.column option {
+  background-color: black;
+}
+
+
 .order {
   align-items: flex-start;
   display: flex;
