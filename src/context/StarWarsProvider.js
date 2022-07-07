@@ -129,7 +129,7 @@ const StarWarsProvider = ({ children }) => {
     setFilterByOrder(orderValues);
   };
 
-  const updateFilterByNumericValues = (column) => {
+  const updateFilterType = (column) => {
     setFilterType({
       ...filterType,
       [column]: false,
@@ -142,7 +142,7 @@ const StarWarsProvider = ({ children }) => {
 
     setFilterByNumericValues(filters);
 
-    updateFilterByNumericValues(column);
+    updateFilterType(column);
   };
 
   const deleteAllFilters = () => {
