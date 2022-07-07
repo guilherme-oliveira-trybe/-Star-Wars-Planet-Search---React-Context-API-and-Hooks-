@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/app-toot-name/static/css/main.f24190a0.css",
+    "main.js": "/app-toot-name/static/js/main.4da4e21d.js",
+    "static/media/sky.jpg": "/app-toot-name/static/media/sky.99a3fca179111e4eb059.jpg",
+    "index.html": "/app-toot-name/index.html",
+    "main.f24190a0.css.map": "/app-toot-name/static/css/main.f24190a0.css.map",
+    "main.4da4e21d.js.map": "/app-toot-name/static/js/main.4da4e21d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f24190a0.css",
+    "static/js/main.4da4e21d.js"
+  ]
+}
